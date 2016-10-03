@@ -1,0 +1,49 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Cantarell:400,700|Josefin+Sans:300,400,600');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:400,600');
+@import '/vendors/simpletypography.scss';
+@include setFontFamily("Cantarell", 400, 700, "Josefin Sans", 700);
+
+$mainColor: #666;
+$textColor: #444;
+$wheatColor: #fff5e3;
+$mutedWheatColor: rgba($wheatColor, .7);
+//$mutedWheatColor: rgba(255, 245, 227, 0.59);
+$redColor: #a32c2c;
+
+@import '/partials/nav.scss';
+@import '/partials/flashMessages.scss';
+@import '/partials/form.scss';
+@import '/partials/animations.scss';
+@import '/partials/signup-login.scss';
+@import '/partials/mainFooter.scss';
+
+
+
+body {
+    margin: 0;
+    color: #mainColor;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+
+}
+
+.wrapper {
+    max-width: 960px;
+    margin:auto;
+}
+
+.main-content-container {
+    width: 100%;
+    min-height: calc(100vh - 50px - 250px);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+
+}

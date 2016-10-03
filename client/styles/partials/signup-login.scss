@@ -1,0 +1,152 @@
+.signup-page-container, .login-page-container {
+    min-width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-page-content, .login-page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 350px;
+        margin: 20px 0 10px;
+        button {
+            color: $redColor;
+            border: none;
+            font-size: 1.2rem;
+            font-family: "montserrat", sans-serif;
+            padding: 4px 8px;
+            height: 23px;
+            box-sizing: border-box;
+            cursor: pointer;
+            background: $mutedWheatColor;
+            &:disabled {
+                opacity: 0.2
+            }
+            &:hover {
+                background: $wheatColor;
+            }
+        }
+    }
+    h1 {
+        width: 100%;
+        color: $wheatColor;
+        text-align: center;
+        margin: 0;
+    }
+    .go-to-span {
+        width: 100%;
+        text-align: center;
+    }
+    a {
+        position: relative;
+        color: $wheatColor;
+        font-size: 1rem;
+        transition: .2s all ease;
+
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            height: 0px;
+            background: #666;
+            width: 100%;
+            z-index: -1;
+
+            transition: .2s all ease;
+        }
+        &:hover {
+            &:before {
+                height: 1px;
+            }
+        }
+
+    }
+}
+
+
+.form-group {
+    //margin: 15px 0;
+    box-sizing: border-box;
+    padding-bottom: 15px;
+    position: relative;
+    max-width: 115px;
+    label {
+        font-family: "Josefin Sans";
+        font-size: 1.2rem;
+        line-height: .1rem;
+        font-weight: 600;
+        position: absolute;
+        padding: 0 2px;
+        top: 12px;
+        left: 4px;
+        background: $redColor;
+        transition: .2s all ease;
+        pointer-events: none;
+        color: $mutedWheatColor;
+    }
+    label.focus {
+        font-size: 1.1rem;
+        top: 0px;
+        left: 3px;
+        color: $wheatColor;
+    }
+    input {
+        color: $wheatColor;
+        background: none;
+        border: 1px solid $mutedWheatColor;
+        padding: 4px;
+        width: 100%;
+        transition: .2 all ease;
+        &:focus {
+            outline: none;
+            border-color: $wheatColor;
+        }
+    }
+    span {
+        color: red;
+        font-family: sans-serif;
+        font-size: .8rem;
+        position: absolute;
+        bottom: 0;
+    }
+
+}
+
+
+
+footer.login-signup-footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    color: $mutedWheatColor;
+    border-top: $mutedWheatColor 1px solid;
+    background: none;
+    text-align: center;
+}
+
+
+.login-signup-content {
+    height: 100%;
+    width: 100%;
+    background: -moz-linear-gradient(305deg, #CC3B3B 0%, #802020 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #CC3B3B), color-stop(100%, #802020)); /* safari4+,chrome */
+    background: -webkit-linear-gradient(305deg, #CC3B3B 0%, #802020 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(305deg, #CC3B3B 0%, #802020 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(305deg, #CC3B3B 0%, #802020 100%); /* ie10+ */
+    background: linear-gradient(145deg, #CC3B3B 0%, #802020 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#CC3B3B', endColorstr='#802020',GradientType=0 ); /* ie6-9 */
+}

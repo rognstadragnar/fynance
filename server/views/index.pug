@@ -1,0 +1,22 @@
+html
+    head
+        title= title
+        link(rel='stylesheet' href='./main.css')
+        script(type='text/javascript').
+            var interval = setInterval(function() {
+                if (document.readyState === 'complete'){
+                    document.getElementById('body').classList.remove("loading")
+                    clearInterval(interval)
+                }
+            }, 250);
+        style.
+            body {
+                transition: .5s opacity ease
+            }
+            .loading{
+                opacity: 0;
+
+            }
+    body#body.loading
+        div#app
+        script(id='bunlejs' src="./bundle.js")

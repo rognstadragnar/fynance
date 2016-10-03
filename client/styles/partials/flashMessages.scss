@@ -1,0 +1,29 @@
+.flash-message-list {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+    pointer-events: none;
+    .flash-message {
+        margin: 5px 0;
+        padding: 0 10px;
+        background: rgba(50, 50, 50, 0.25);
+        line-height: 30px;
+        height: 30px;
+        font-size: 1rem;
+        font-family: sans-serif;
+        text-align: center;
+        color: white;
+        border-radius: 15px;
+        pointer-events: all;
+        cursor: pointer;
+        &:hover {
+            background: rgba(50, 50, 50, .5)
+        }
+    }
+}
