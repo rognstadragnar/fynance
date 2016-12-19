@@ -25,7 +25,7 @@ app.use(webpackHotMiddleware(webpackCompiler));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.use('/', routes);
-
+app.use('/static', express.static(__dirname + '/server/_static'));
 
 
 

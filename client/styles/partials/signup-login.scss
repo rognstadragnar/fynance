@@ -1,7 +1,9 @@
 .signup-page-container, .login-page-container {
     min-width: 100vw;
-    min-height: 100vh;
-    position: absolute;
+    min-height: calc(100% - 40px);
+    box-sizing: border-box;
+    padding-top: 40px;
+    //position: absolute;
     top: 0;
     left: 0;
     display: flex;
@@ -10,10 +12,18 @@
 }
 
 .signup-page-content, .login-page-content {
+    position: relative;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    background: #fefefe;
+    border-radius: 5px;
+    width: 250px;
+    padding: 70px 30px 20px;
+    box-shadow: 0 2px 15px -5px #666;
+
     form {
         display: flex;
         justify-content: center;
@@ -21,37 +31,42 @@
         flex-wrap: wrap;
         max-width: 350px;
         margin: 20px 0 10px;
-        button {
-            color: $redColor;
-            border: none;
-            font-size: 1.2rem;
-            font-family: "montserrat", sans-serif;
-            padding: 4px 8px;
-            height: 23px;
-            box-sizing: border-box;
-            cursor: pointer;
-            background: $mutedWheatColor;
-            &:disabled {
-                opacity: 0.2
-            }
-            &:hover {
-                background: $wheatColor;
-            }
-        }
+
     }
     h1 {
         width: 100%;
-        color: $wheatColor;
+        color: $textColor;
         text-align: center;
         margin: 0;
     }
     .go-to-span {
+        display: block;
         width: 100%;
         text-align: center;
+        color: $mutedTextColor;
+
+        a {
+            position: relative;
+            color: $mutedTextColor;
+            transition: .1s all ease-in-out;
+
+        }
+        a > span {
+            transition: .1s all ease-in-out;
+            border-color: rgba($goldColor, 0);
+        }
+        &:hover {
+            a {color: $textColor;}
+            a > span {
+                color: $goldColor;
+                border-color: rgba($goldColor, 1);
+            }
+        }
+
     }
     a {
         position: relative;
-        color: $wheatColor;
+        color: $textColor;
         font-size: 1rem;
         transition: .2s all ease;
 
@@ -80,43 +95,57 @@
 .form-group {
     //margin: 15px 0;
     box-sizing: border-box;
-    padding-bottom: 15px;
+    margin-bottom: 15px;
     position: relative;
     max-width: 115px;
+    img {
+        position: absolute;
+        width: 15px;
+        bottom: 5px;
+        left: 4px;
+        opacity: 0.7;
+        transition: .25s all ease-in-out;
+    }
+    &.focus {
+        img {opacity: 1}
+    }
     label {
-        font-family: "Josefin Sans";
-        font-size: 1.2rem;
+        font-family: "Roboto", sans-serif;
+        font-size: 1.4rem;
         line-height: .1rem;
-        font-weight: 600;
+        font-weight: 400;
         position: absolute;
         padding: 0 2px;
         top: 12px;
-        left: 4px;
-        background: $redColor;
-        transition: .2s all ease;
+        left: 22px;
+        //background: #fefefe;
+        transition: .05s all ease;
         pointer-events: none;
-        color: $mutedWheatColor;
+        color: $mutedTextColor;
     }
     label.focus {
-        font-size: 1.1rem;
-        top: 0px;
-        left: 3px;
-        color: $wheatColor;
+        opacity: .66;
+    }
+    label.dirty {
+        //color: $textColor;
+        opacity: 0;
     }
     input {
-        color: $wheatColor;
+        color: $textColor;
         background: none;
-        border: 1px solid $mutedWheatColor;
-        padding: 4px;
+        border: none;
+        border-bottom: 1px solid $mutedTextColor;
+        padding: 2px 0 3px 24px;
         width: 100%;
-        transition: .2 all ease;
+        transition: .2s all ease;
+        font-size: 1.5rem;
         &:focus {
             outline: none;
-            border-color: $wheatColor;
         }
     }
     span {
-        color: red;
+        display: none;
+        color: $redColor;
         font-family: sans-serif;
         font-size: .8rem;
         position: absolute;
@@ -128,25 +157,207 @@
 
 
 footer.login-signup-footer {
-    position: fixed;
+    position: relative;
     width: 100%;
     left: 0;
     bottom: 0;
-    color: $mutedWheatColor;
-    border-top: $mutedWheatColor 1px solid;
+    color: $mutedTextColor;
     background: none;
     text-align: center;
+    padding: 10px 0;
+    font-size: 1.25rem
 }
 
 
 .login-signup-content {
-    height: 100%;
+    min-height: 100%;
+    //width: 100%;
+    &:before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        height: 100%;
+        background: -moz-linear-gradient(305deg, #f9ca48 0%, #d0972e 100%); /* ff3.6+ */
+        background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #f9ca48), color-stop(100%, #d0972e)); /* safari4+,chrome */
+        background: -webkit-linear-gradient(305deg, #f9ca48 0%, #d0972e 100%); /* safari5.1+,chrome10+ */
+        background: -o-linear-gradient(305deg, #f9ca48 0%, #d0972e 100%); /* opera 11.10+ */
+        background: -ms-linear-gradient(305deg, #f9ca48 0%, #d0972e 100%); /* ie10+ */
+        background: linear-gradient(145deg, #f9ca48 0%, #d0972e 100%); /* w3c */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9ca48', endColorstr='#d0972e',GradientType=0 ); /* ie6-9 */
+    }
+
+}
+
+
+
+
+.login-page-header {
+    top: 0;
+    left: 0;
+    height: 50px;
     width: 100%;
-    background: -moz-linear-gradient(305deg, #CC3B3B 0%, #802020 100%); /* ff3.6+ */
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #CC3B3B), color-stop(100%, #802020)); /* safari4+,chrome */
-    background: -webkit-linear-gradient(305deg, #CC3B3B 0%, #802020 100%); /* safari5.1+,chrome10+ */
-    background: -o-linear-gradient(305deg, #CC3B3B 0%, #802020 100%); /* opera 11.10+ */
-    background: -ms-linear-gradient(305deg, #CC3B3B 0%, #802020 100%); /* ie10+ */
-    background: linear-gradient(145deg, #CC3B3B 0%, #802020 100%); /* w3c */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#CC3B3B', endColorstr='#802020',GradientType=0 ); /* ie6-9 */
+    position: absolute;
+    background-image: url('../_static/img/logo.svg');
+    display: flex;
+    justify-content: center;
+    background: #484848;
+    border-radius: 5px 5px 0 0;
+    img {
+        margin: 10px 0;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.signup-page-aside {
+    align-self: stretch;
+    background: #484848;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    padding: 20px 5px;
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.signup-page-content {
+    width: auto;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.signup-page-main {
+    padding: 20px 30px;
+}
+
+
+.form-group:after, .form-group:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: $textColor;
+    transition: .25s width ease-in-out;
+}
+
+.form-group:after {
+    right: 50%;
+}
+.form-group:before {
+    left: 50%;
+}
+.form-group.focus:after, .form-group.focus:before{
+    width: 50%
+}
+
+.form-group.error {
+    label.error {
+        color: $redColor
+    }
+    input.error {
+        color: $redColor;
+        border-color: $redColor;
+    }
+    &:after, &:before {
+        background: $redColor;
+    }
+}
+
+
+.form-icon {
+    width: 15px;
+    margin: 5px 0
+}
+
+.form-button-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    button {
+        position: relative;
+        width: 100%;
+        color: #fefefe;
+        border: none;
+        font-size: 1.2rem;
+        font-family: "Rubik", sans-serif;
+        padding: 3px 10px 2px 0;
+        height: 23px;
+        max-width: 75px;
+        box-sizing: border-box;
+        border-radius: 2px;
+        cursor: pointer;
+        background: rgb(226, 173, 57);
+        &:after {
+            content: '';
+            top: 0;
+            right: 0;
+            width: 15px;
+            height: 100%;
+            margin-right: calc(25% - 15px);
+            position: absolute;
+            background-image: url('../_static/img/arrow.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        &:disabled {
+            opacity: 0.2
+        }
+        &:hover {
+            background: $darkGoldColor;
+        }
+        span {
+            height: 20px;
+        }
+    }
+}
+
+.signup-form {
+    max-width: 250px;
+    .form-group {
+        max-width: none;
+    }
+    .form-group.full-width {
+        width: 100%;
+    }
+    .form-group.half-width {
+        width: calc(50% - 10px);
+        &:nth-child(odd) {
+            margin-right: 10px;
+        }
+    }
+}
+
+.signup-page-content {
+    form {
+
+        max-width: 275px;
+        width: 100%;
+        justify-content: space-around;
+        .form-button-group {
+            button {
+                max-width: 95px
+            }
+        }
+    }
+}
+
+
+.login-signup-content {
+    .main-content-container {
+        width: 100%;
+        min-height: calc(100vh - 40px);
+    }
+}
+
+
+.login-signup-content-container {
+    min-height: calc(100vh - 40px)
 }

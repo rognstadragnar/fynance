@@ -1,7 +1,7 @@
 import React from 'react';
-import NavigationBar from './NavigationBar';
 import FlashMessagesList from './flash/FlashMessageList';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactCSSTransitionReplace from 'react-css-transition-replace';
 import LoginPage from './Login/LoginPage';
 import LoginSignUpFooter from './LoginSignUpFooter';
 
@@ -10,11 +10,11 @@ export default class LoginLayout extends React.Component {
         return (
             <div className='login-signup-content'>
                 <FlashMessagesList />
-
+                <div className='transition-spacer'></div>
                 <ReactCSSTransitionGroup
                   component="div"
-                  className='main-content-container'
-                  transitionName="example"
+                  className='login-signup-content-container'
+                  transitionName="page"
                   transitionEnterTimeout={500}
                   transitionLeaveTimeout={500}
                   >

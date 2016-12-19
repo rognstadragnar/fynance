@@ -1,20 +1,26 @@
 import React from 'react';
 import TextfieldGroup from '../_common/TextfieldGroup';
 
-import validateInput from '../../../server/shared/validations/login'
+import validateInput from '../../utils/validateLogin';
+
 import { connect } from 'react-redux';
 import { login } from '../../actions/authActions';
 import { addFlashmessage } from '../../actions/flashMessagesActions';
+import arrow from '../../_static/img/arrow.svg';
+import userIcon from '../../_static/img/user.svg';
+import lockIcon from '../../_static/img/lock.svg';
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: '',
+            email: '',
+            emailFocus: '',
+            emailDirty: '',
             password: '',
-            errors: {},
-            usernameFocus: '',
-            passwordFocus: ''
+            passwordFocus: '',
+            passwordDirty: '',
+            errors: {}
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,15 +32,16 @@ class LoginForm extends React.Component {
         this.setState({ [name]: 'focus'})
     }
     handleBlur(e){
-        const name = [e.target.name] + 'Focus';
-        if (e.target.value === '') {
-            this.setState({ [name]: ''})
-        } else {
-            this.setState({ [name]: 'focus'})
-        }
+        const focus = [e.target.name] + 'Focus';
+        const dirty = [e.target.name] + 'Dirty';
+
+        this.setState({ [focus]: ''})
     }
     handleChange(e){
-        this.setState({ [e.target.name]: e.target.value})
+        const dirty = [e.target.name] + 'Dirty';
+        let isDirty = '';
+        e.target.value !== '' ? isDirty = 'dirty' : isDirty = '';
+        this.setState({ [e.target.name]: e.target.value, [dirty]: isDirty})
     }
     handleSubmit(e){
         e.preventDefault();
@@ -59,23 +66,25 @@ class LoginForm extends React.Component {
         return isValid;
     }
     render() {
-        const { errors, username, password, usernameFocus, passwordFocus } = this.state;
+        const { errors, email, emailFocus, emailDirty,
+            password, passwordFocus, passwordDirty } = this.state;
         return(
             <form onSubmit={this.handleSubmit}>
                 <TextfieldGroup
-                    labelName='Username'
-                    labelClass={usernameFocus ? usernameFocus : ''}
+                    labelName='E-post'
+                    labelClass={emailFocus + ' ' + emailDirty + ' ' + (this.state.errors.email ? 'error' : '')}
                     field='text'
-                    name='username'
+                    name='email'
                     onChange={this.handleChange}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
-                    value={username}
-                    errors={errors.username}
+                    value={email}
+                    errors={errors.email}
+                    icon={userIcon}
                 />
                 <TextfieldGroup
-                    labelName='Password'
-                    labelClass={passwordFocus ? passwordFocus : ''}
+                    labelName='Passord'
+                    labelClass={passwordFocus + ' ' + passwordDirty + ' ' + (this.state.errors.password ? 'error' : '')}
                     field='password'
                     name='password'
                     onChange={this.handleChange}
@@ -83,9 +92,11 @@ class LoginForm extends React.Component {
                     onBlur={this.handleBlur}
                     value={password}
                     errors={errors.password}
+                    icon={lockIcon}
+
                 />
                 {this.state.errors.form && <span>{this.state.errors.form}</span>}
-                <div className='form-group'>
+                <div className='form-button-group'>
                     <button>Log in</button>
                 </div>
             </form>

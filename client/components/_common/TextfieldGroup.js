@@ -1,19 +1,22 @@
 import React from 'react';
 
-const TextfieldGroup = ({labelName, labelClass, field, name, value, errors, onChange, onBlur, onFocus}) => {
+const TextfieldGroup = ({labelName, labelClass, field, name, value, errors, onChange, onBlur, onFocus, icon}) => {
+    const hasIcon = icon ? ' hasIcon' : '';
     return (
-        <div className='form-group'>
+        <div className={'form-group' + hasIcon + ' '+ labelClass}>
+            { icon ? <img src={icon}></img> : null }
             <label
                 className={labelClass}
                 htmlFor={name}>
                 {labelName}
             </label>
             <input
+                className={labelClass}
                 onFocus={onFocus}
                 onChange={onChange}
                 onBlur={onBlur}
                 type={field}
-                name={name} 
+                name={name}
                 value={value}
             />
             {errors && <span>{errors}</span>}
@@ -31,7 +34,8 @@ TextfieldGroup.propTypes = {
     errors: React.PropTypes.string,
     onChange: React.PropTypes.func.isRequired,
     onBlur: React.PropTypes.func,
-    onFocus: React.PropTypes.func
+    onFocus: React.PropTypes.func,
+    icon: React.PropTypes.string
 }
 
 TextfieldGroup.defaultProps = {

@@ -1,29 +1,62 @@
 
 
-@import url('https://fonts.googleapis.com/css?family=Cantarell:400,700|Josefin+Sans:300,400,600');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:400,600');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,600');
+
+
+
 @import '/vendors/simpletypography.scss';
-@include setFontFamily("Cantarell", 400, 700, "Josefin Sans", 700);
+@include setFontFamily("Roboto", 400, 500, "Rubik", 400);
 
 $mainColor: #666;
-$textColor: #444;
+$textColor: #eee;/*#444*/ 
+$mutedTextColor: rgba($textColor, .5);
+
 $wheatColor: #fff5e3;
 $mutedWheatColor: rgba($wheatColor, .7);
 //$mutedWheatColor: rgba(255, 245, 227, 0.59);
-$redColor: #a32c2c;
+$redColor: #e84737;
+$greenColor: #1ab140;
 
-@import '/partials/nav.scss';
+$goldColor: rgb(226, 173, 57);
+$darkGoldColor: darken($goldColor, 10%);
+
+
+$newNav: linear-gradient(to left, #326383, #346c91);
+$newSidenav: rgba(41, 43, 45, 0.9);
+$newSidenavUl: linear-gradient(to bottom, rgba(129, 181, 216, 0.24), rgba(27, 85, 123, 0));
+
+@mixin mainGradient {
+    background: $newSidenav       //background: rgb(42, 52, 64)
+}     
+@mixin navGradient {
+    background: rgba(69,69,69, .9);
+    background: rgb(49, 59, 74);
+    background: linear-gradient(to right, #19547b, #346484); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: $newNav;
+}
+@mixin cardGradient {
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,.75) 0%,rgba(255,255,255,.65) 100%);
+
+}
+@import '/partials/header.scss';
+@import '/partials/sidenav.scss';
 @import '/partials/flashMessages.scss';
 @import '/partials/form.scss';
+@import '/partials/table.scss';
+
 @import '/partials/animations.scss';
 @import '/partials/signup-login.scss';
+@import '/partials/main-layout.scss';
+
 @import '/partials/mainFooter.scss';
-
-
 
 body {
     margin: 0;
     color: #mainColor;
+    overflow-x: hidden;
 }
 
 #app {
@@ -32,18 +65,23 @@ body {
 
 }
 
+
 .wrapper {
+    width: 100%;
     max-width: 960px;
     margin:auto;
 }
 
-.main-content-container {
-    width: 100%;
-    min-height: calc(100vh - 50px - 250px);
+
+
+* {
+  min-height: 0;
+  min-width: 0;
 }
 
-.app-container {
-    display: flex;
-    flex-direction: column;
-
+i {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
 }

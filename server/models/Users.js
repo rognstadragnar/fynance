@@ -12,16 +12,19 @@ const sequelize = new Sequelize(config.db.database, config.db.username, config.d
 });
 
 
-const User = sequelize.define('user', {
-    id: { type: Sequelize.INTEGER,
+const User = sequelize.define('users', {
+    id: {
+        type: Sequelize.INTEGER,
         autoIncrement: true,
-        primaryKey: true
-
+        primaryKey: true,
+        unique: true
     },
-    _id: { type: Sequelize.STRING,
-        defaultValue: shortid.generate
+    _id: {
+        type: Sequelize.STRING,
+        defaultValue: shortid.generate,
+        unique: true
     },
-    username: {
+    email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
@@ -29,14 +32,24 @@ const User = sequelize.define('user', {
     password: {
         type: Sequelize.STRING
     },
+    fullname: {
+        type: Sequelize.STRING
+    },
+    address: {
+        type: Sequelize.STRING
+    },
+    postnummer: {
+        type: Sequelize.INTEGER(4)
+    },
     signUpDate: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW
     }
-
-}, {
-  freezeTableName: true // Model tableName will be the same as the model name
-});
+},
+    {
+        freezeTableName: true // Model tableName will be the same as the model name
+    }
+);
 
 sequelize.sync();
 

@@ -1,0 +1,39 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    th {
+        border-bottom: 1px solid #888;
+        background: #484848;
+        color: white;
+    }
+    tr {
+        background: none;
+        &.green {
+            td.amount-row {
+                color: $greenColor;
+            }
+            &:hover {
+                background: rgba($greenColor, .5);
+                td.amount-row {
+                    color: #444;
+                }
+            }
+        }
+        &.red {
+            td.amount-row {
+                color: $redColor;
+            }
+            &:hover {
+                background: rgba($redColor, .5);
+                td.amount-row {
+                    color: #444;
+                }
+            }
+        }
+        &:nth-child(even) {
+            background: #eee;
+        }
+    }
+}

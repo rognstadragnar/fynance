@@ -26,10 +26,6 @@ export default (
             <Route path='work' component={requireAuth(WorkPage)} />
             <Route path='contact' component={requireAuth(ContactPage)} />
             <Route path='profile' component={requireAuth(ProfilePage)} />
-
-            //<Route path='signup' component={SignupPage} />
-            //<Route path='login' component={LoginPage} />
-            
         </Route>
         <Route component={LoginLayout}>
             <Route path='*' component={NotFoundPage} />

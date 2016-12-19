@@ -21,6 +21,7 @@ export default {
                     path.join(__dirname, 'client'),
                     path.join(__dirname, 'server')
                 ],
+                exclude: /node_modules/,
                 loaders: [ 'react-hot', 'babel' ]
             },
             {
@@ -37,6 +38,10 @@ export default {
                     path.join(__dirname, '/client/styles')
                 ],
                 loaders: [/*ExtractTextPlugin.extract("sass", "css", "style" )*/ "style", "css", "sass"]
+            },
+            {
+                test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+                loader: "file"
             }
         ]
     },
